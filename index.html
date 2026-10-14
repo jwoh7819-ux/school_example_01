@@ -174,4 +174,49 @@
             "ESTP": { name: "피카츄", emoji: "⚡", desc: "에너지가 넘치고 호기심이 많아 어디서든 주인공이 되는 스타일!<br>활동적이고 매일매일 새로운 모험을 즐기는 활력소예요.", match: "ISTJ" },
             "ESFP": { name: "토게피", emoji: "🥚", desc: "밝고 명랑해서 주변 사람들을 즐겁게 해주는 최고의 분위기 메이커예요.<br>애교가 많고 사람들과 어울려 노는 것을 정말 사랑합니다.", match: "ISFJ" },
             "ENFP": { name: "이브이", emoji: "🦊", desc: "무한한 가능성을 가지고 있고 언제나 에너지가 넘치며 활발해요.<br>새로운 사람들과 어울리는 것을 좋아하고 무한 긍정맨입니다.", match: "INFJ" },
-            "ENTP": { name: "팬텀", emoji: "👻", desc: "장
+            "ENTP": { name: "팬텀", emoji: "👻", desc: "장난기가 많고 독창적이며 번뜩이는 아이디어로 모두를 놀라게 해요.<br>틀에 박힌 것을 싫어하고 새로운 도전을 즐기는 성격입니다.", match: "INTJ" },
+            "ESTJ": { name: "리자몽", emoji: "🔥", desc: "리더십이 뛰어나고 목표를 향해 뜨겁게 돌진하는 열정적인 성격이에요.<br>매우 현실적이고 친구들에게 든든한 지원군이 되어줍니다.", match: "ISTP" },
+            "ESFJ": { name: "럭키", emoji: "🌸", desc: "천사 같은 마음씨로 사람들을 보살피고 돕는 것을 가장 큰 기쁨으로 여겨요.<br>공감 능력이 뛰어나서 주변을 언제나 따뜻하게 만듭니다.", match: "ISFP" },
+            "ENFJ": { name: "가디", emoji: "🐶", desc: "충성심이 강하고 다정하며, 사람들을 긍정적인 방향으로 이끌어줘요.<br>다정한 카리스마로 주변 사람들에게 늘 큰 힘이 됩니다.", match: "INFP" },
+            "ENTJ": { name: "루카리오", emoji: "🐺", desc: "카리스마가 넘치고 결단력이 있으며, 어떤 어려움도 당당히 뚫고 나갑니다.<br>강한 의지와 추진력으로 자신이 세운 목표를 완벽하게 해내요.", match: "INTP" }
+        };
+
+        // 초기 화면에 16개 MBTI 버튼 생성
+        const mbtiList = Object.keys(pokemonData);
+        const grid = document.getElementById('mbti-grid');
+        
+        mbtiList.forEach(mbti => {
+            const btn = document.createElement('button');
+            btn.className = 'mbti-btn';
+            btn.innerText = mbti;
+            btn.onclick = () => showResult(mbti);
+            grid.appendChild(btn);
+        });
+
+        // 결과 보여주기 함수
+        function showResult(mbti) {
+            // 홈 화면 숨기기
+            document.getElementById('home-screen').style.display = 'none';
+            
+            // 데이터 가져오기
+            const data = pokemonData[mbti];
+            
+            // 결과 화면에 데이터 넣기
+            document.getElementById('mbti-title').innerText = mbti + " 유형의 당신은...";
+            document.getElementById('pokemon-emoji').innerText = data.emoji;
+            document.getElementById('pokemon-name').innerText = data.name;
+            document.getElementById('pokemon-desc').innerHTML = data.desc;
+            document.getElementById('pokemon-match').innerText = data.match;
+            
+            // 결과 화면 보여주기
+            document.getElementById('result-screen').style.display = 'block';
+        }
+
+        // 다시 고르기 함수 (초기화)
+        function reset() {
+            document.getElementById('result-screen').style.display = 'none';
+            document.getElementById('home-screen').style.display = 'block';
+        }
+    </script>
+</body>
+</html>
